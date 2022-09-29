@@ -1,8 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { movies$ } from "./movies";
 
 function App() {
+  const [movies, setMovies] = useState(null);
+
+  useEffect(() => {
+    movies$.then((value) => setMovies(value));
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
