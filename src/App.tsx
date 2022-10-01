@@ -62,7 +62,12 @@ function App() {
         {movies
           ? movies.map((movie) => (
               <Grid key={movie.id} item xs={12} sm={6} lg={4}>
-                <MovieCard title={movie.title} category={movie.category} />
+                <MovieCard
+                  title={movie.title}
+                  category={movie.category}
+                  likes={movie.likes}
+                  dislikes={movie.dislikes}
+                />
               </Grid>
             ))
           : displayLoadingSkeletons()}
