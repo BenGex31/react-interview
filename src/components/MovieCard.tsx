@@ -1,8 +1,11 @@
-import { ThumbDownAlt, ThumbUpAlt } from "@mui/icons-material";
+import { Delete, ThumbDownAlt, ThumbUpAlt } from "@mui/icons-material";
 import {
+  Button,
   Card,
+  CardActions,
   CardHeader,
   Stack,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { green, red } from "@mui/material/colors";
@@ -36,6 +39,18 @@ const MovieCard = ({ title, category, likes, dislikes }: movieObject) => {
           </Stack>
         }
       />
+      <CardActions>
+        <Tooltip title="Ce film ne vous plaît pas ?">
+          <Button
+            sx={{ textTransform: "none" }}
+            size="small"
+            variant="outlined"
+            startIcon={<Delete />}
+          >
+            Supprimer
+          </Button>
+        </Tooltip>
+      </CardActions>
     </Card>
   );
 };
