@@ -42,12 +42,18 @@ const MovieCard = ({
           <Stack direction={"column"} spacing={5} alignItems={"center"}>
             <Stack direction={"row"} spacing={3}>
               <Stack direction={"row"} spacing={1}>
-                <ThumbUpAlt sx={{ color: green[500] }} />{" "}
-                <Typography variant="body2">{likes}</Typography>
+                <Tooltip title={likes.toString()}>
+                  <IconButton>
+                    <ThumbUpAlt sx={{ color: green[500] }} />
+                  </IconButton>
+                </Tooltip>
               </Stack>
               <Stack direction={"row"} spacing={1}>
-                <ThumbDownAlt sx={{ color: red[500] }} />{" "}
-                <Typography variant="body2">{dislikes}</Typography>
+                <Tooltip title={dislikes.toString()}>
+                  <IconButton>
+                    <ThumbDownAlt sx={{ color: red[500] }} />
+                  </IconButton>
+                </Tooltip>
               </Stack>
             </Stack>
             <GaugeRating likes={likes} dislikes={dislikes} />
