@@ -5,9 +5,9 @@ import { Grid, Skeleton } from "@mui/material";
 import MovieCard from "./components/MovieCard";
 
 export type movieObject = {
-  id: string;
-  title: string;
-  category: string;
+  id?: string;
+  title?: string;
+  category?: string;
   likes: number;
   dislikes: number;
 };
