@@ -24,7 +24,7 @@ const MovieCard = ({
     <Card>
       <CardHeader
         title={
-          <Typography fontWeight={"bold"} variant="h5">
+          <Typography fontWeight={"bold"} variant="h6">
             {title}
           </Typography>
         }
