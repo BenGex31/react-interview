@@ -13,7 +13,13 @@ import React from "react";
 import { movieObject } from "../App";
 import GaugeRating from "./GaugeRating";
 
-const MovieCard = ({ title, category, likes, dislikes }: movieObject) => {
+const MovieCard = ({
+  title,
+  category,
+  likes,
+  dislikes,
+  handleMovieDelete,
+}: movieObject) => {
   return (
     <Card>
       <CardHeader
@@ -46,6 +52,7 @@ const MovieCard = ({ title, category, likes, dislikes }: movieObject) => {
             size="small"
             variant="outlined"
             startIcon={<Delete />}
+            onClick={handleMovieDelete}
           >
             Supprimer
           </Button>

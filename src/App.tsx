@@ -10,6 +10,7 @@ export type movieObject = {
   category?: string;
   likes: number;
   dislikes: number;
+  handleMovieDelete?: () => void;
 };
 
 function App() {
@@ -56,6 +57,17 @@ function App() {
     );
   }
 
+  function handleMovieDelete(movieId: string | undefined): void {
+    if (movies) {
+      const _movies = [...movies];
+      const findedIndexMovie = movies.findIndex(
+        (movie) => movie.id === movieId
+      );
+      _movies.splice(findedIndexMovie, 1);
+      setMovies(_movies);
+    }
+  }
+
   return (
     <Container maxWidth={"lg"}>
       <Grid container justifyContent={"space-between"} spacing={2}>
@@ -67,6 +79,7 @@ function App() {
                   category={movie.category}
                   likes={movie.likes}
                   dislikes={movie.dislikes}
+                  handleMovieDelete={() => handleMovieDelete(movie.id)}
                 />
               </Grid>
             ))
