@@ -1,4 +1,10 @@
-import { Delete, ThumbDownAlt, ThumbUpAlt } from "@mui/icons-material";
+import {
+  Delete,
+  Favorite,
+  FavoriteBorder,
+  ThumbDownAlt,
+  ThumbUpAlt,
+} from "@mui/icons-material";
 import {
   Button,
   Card,
@@ -7,6 +13,7 @@ import {
   Stack,
   Tooltip,
   Typography,
+  IconButton,
 } from "@mui/material";
 import { green, red } from "@mui/material/colors";
 import React from "react";
@@ -19,6 +26,8 @@ const MovieCard = ({
   likes,
   dislikes,
   handleMovieDelete,
+  handleFavoriteToggle,
+  favorite,
 }: movieObject) => {
   return (
     <Card>
@@ -45,7 +54,17 @@ const MovieCard = ({
           </Stack>
         }
       />
-      <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
+      <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
+        <IconButton
+          aria-label="add to favorites"
+          onClick={handleFavoriteToggle}
+        >
+          {favorite ? (
+            <Favorite sx={{ color: red[500] }} />
+          ) : (
+            <FavoriteBorder sx={{ color: red[500] }} />
+          )}
+        </IconButton>
         <Tooltip title="Ce film ne vous plaît pas ?">
           <Button
             sx={{ textTransform: "none" }}

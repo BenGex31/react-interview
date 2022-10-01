@@ -9,9 +9,11 @@ export type movieObject = {
   id?: string;
   title?: string;
   category?: string;
+  favorite?: boolean;
   likes: number;
   dislikes: number;
   handleMovieDelete?: () => void;
+  handleFavoriteToggle?: () => void;
 };
 
 export type snackBarObject = {
@@ -37,7 +39,14 @@ function App() {
   });
 
   useEffect(() => {
-    movies$.then((value) => setMovies(value));
+    movies$.then((value) =>
+      setMovies(
+        value.map((item: movieObject) => ({
+          ...item,
+          favorite: false,
+        }))
+      )
+    );
   }, []);
 
   function displayLoadingSkeletons(): React.ReactNode {
@@ -80,7 +89,7 @@ function App() {
   function handleMovieDelete(movieId: string | undefined): void {
     if (movies) {
       const _movies = [...movies];
-      const findedIndexMovie = movies.findIndex(
+      const findedIndexMovie = _movies.findIndex(
         (movie) => movie.id === movieId
       );
       setSnackBar({
@@ -90,6 +99,17 @@ function App() {
         severity: "success",
       });
       _movies.splice(findedIndexMovie, 1);
+      setMovies(_movies);
+    }
+  }
+
+  function handleFavoriteToggle(movieId: string  | undefined): void {
+    if(movies){
+      const _movies = [...movies];
+      const findedIndexMovie = _movies.findIndex(
+        (movie) => movie.id === movieId
+      );
+      _movies[findedIndexMovie].favorite = !_movies[findedIndexMovie].favorite
       setMovies(_movies);
     }
   }
@@ -106,6 +126,8 @@ function App() {
                   likes={movie.likes}
                   dislikes={movie.dislikes}
                   handleMovieDelete={() => handleMovieDelete(movie.id)}
+                  handleFavoriteToggle={() => handleFavoriteToggle(movie.id)}
+                  favorite={movie.favorite}
                 />
               </Grid>
             ))
