@@ -103,13 +103,13 @@ function App() {
     }
   }
 
-  function handleFavoriteToggle(movieId: string  | undefined): void {
-    if(movies){
+  function handleFavoriteToggle(movieId: string | undefined): void {
+    if (movies) {
       const _movies = [...movies];
       const findedIndexMovie = _movies.findIndex(
         (movie) => movie.id === movieId
       );
-      _movies[findedIndexMovie].favorite = !_movies[findedIndexMovie].favorite
+      _movies[findedIndexMovie].favorite = !_movies[findedIndexMovie].favorite;
       setMovies(_movies);
     }
   }
