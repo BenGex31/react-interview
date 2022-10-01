@@ -2,7 +2,6 @@ import { ThumbDownAlt, ThumbUpAlt } from "@mui/icons-material";
 import {
   Card,
   CardHeader,
-  CircularProgress,
   Stack,
   Typography,
 } from "@mui/material";
@@ -12,11 +11,6 @@ import { movieObject } from "../App";
 import GaugeRating from "./GaugeRating";
 
 const MovieCard = ({ title, category, likes, dislikes }: movieObject) => {
-  const displayRating = () => {
-    if (likes > dislikes) {
-      return ((likes - dislikes) / (likes + dislikes)) * 100;
-    }
-  };
   return (
     <Card>
       <CardHeader
