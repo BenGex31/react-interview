@@ -1,16 +1,22 @@
 import { ThumbDownAlt, ThumbUpAlt } from "@mui/icons-material";
-import { Card, CardHeader, Stack, Tooltip, Typography } from "@mui/material";
+import {
+  Card,
+  CardHeader,
+  CircularProgress,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { green, red } from "@mui/material/colors";
 import React from "react";
+import { movieObject } from "../App";
+import GaugeRating from "./GaugeRating";
 
-type movieCardProps = {
-  title: string;
-  category: string;
-  likes: number;
-  dislikes: number;
-};
-
-const MovieCard = ({ title, category, likes, dislikes }: movieCardProps) => {
+const MovieCard = ({ title, category, likes, dislikes }: movieObject) => {
+  const displayRating = () => {
+    if (likes > dislikes) {
+      return ((likes - dislikes) / (likes + dislikes)) * 100;
+    }
+  };
   return (
     <Card>
       <CardHeader
@@ -21,15 +27,18 @@ const MovieCard = ({ title, category, likes, dislikes }: movieCardProps) => {
         }
         subheader={category}
         action={
-          <Stack direction={"row"} spacing={3}>
-            <Stack direction={"row"} spacing={1}>
-              <ThumbUpAlt sx={{ color: green[500] }} />{" "}
-              <Typography>{likes}</Typography>
+          <Stack direction={"column"} spacing={5} alignItems={"center"}>
+            <Stack direction={"row"} spacing={3}>
+              <Stack direction={"row"} spacing={1}>
+                <ThumbUpAlt sx={{ color: green[500] }} />{" "}
+                <Typography variant="body2">{likes}</Typography>
+              </Stack>
+              <Stack direction={"row"} spacing={1}>
+                <ThumbDownAlt sx={{ color: red[500] }} />{" "}
+                <Typography variant="body2">{dislikes}</Typography>
+              </Stack>
             </Stack>
-            <Stack direction={"row"} spacing={1}>
-              <ThumbDownAlt sx={{ color: red[500] }} />{" "}
-              <Typography>{dislikes}</Typography>
-            </Stack>
+            <GaugeRating likes={likes} dislikes={dislikes} />
           </Stack>
         }
       />
