@@ -57,7 +57,7 @@ function App() {
   }
 
   return (
-    <Container maxWidth={"xl"}>
+    <Container maxWidth={"lg"}>
       <Grid container justifyContent={"space-between"} spacing={2}>
         {movies
           ? movies.map((movie) => (
