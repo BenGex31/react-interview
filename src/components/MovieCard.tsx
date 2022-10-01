@@ -39,7 +39,7 @@ const MovieCard = ({ title, category, likes, dislikes }: movieObject) => {
           </Stack>
         }
       />
-      <CardActions>
+      <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
         <Tooltip title="Ce film ne vous plaît pas ?">
           <Button
             sx={{ textTransform: "none" }}
