@@ -114,8 +114,6 @@ function App() {
                     category={movie.category}
                     likes={movie.likes}
                     dislikes={movie.dislikes}
-                    handleMovieDelete={() => handleMovieDelete(movie.id)}
-                    handleFavoriteToggle={() => handleFavoriteToggle(movie.id)}
                     favorite={movie.favorite}
                     image={movie.image}
                   />

@@ -29,12 +29,14 @@ const MovieCard = ({
   likes,
   dislikes,
   image,
-  handleMovieDelete,
-  handleFavoriteToggle,
   favorite,
 }: movieObject) => {
-  const { handleLikeClick, handleDislikeClick }: any =
-    React.useContext(MoviesContext);
+  const {
+    handleLikeClick,
+    handleDislikeClick,
+    handleMovieDelete,
+    handleFavoriteToggle,
+  }: any = React.useContext(MoviesContext);
   return (
     <Card>
       <CardHeader
@@ -76,7 +78,7 @@ const MovieCard = ({
       <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
         <IconButton
           aria-label="add to favorites"
-          onClick={handleFavoriteToggle}
+          onClick={() => handleFavoriteToggle(id)}
         >
           {favorite ? (
             <Favorite sx={{ color: red[500] }} />
@@ -90,7 +92,7 @@ const MovieCard = ({
             size="small"
             variant="outlined"
             startIcon={<Delete />}
-            onClick={handleMovieDelete}
+            onClick={() => handleMovieDelete(id)}
           >
             Supprimer
           </Button>
