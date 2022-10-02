@@ -3,6 +3,7 @@ export type movieObject = {
     title?: string;
     category?: string;
     favorite?: boolean;
+    image?: string;
     likes: number;
     dislikes: number;
     handleMovieDelete?: () => void;
