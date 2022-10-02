@@ -10,7 +10,7 @@ import { MoviesContext } from "../context/AppProvider";
 import { movieObject } from "../types/Types";
 
 export default function SearchAppBar() {
-  const { movies }: any = React.useContext(MoviesContext);
+  const { movies, handleChangeCategory }: any = React.useContext(MoviesContext);
 
   function renderCategories(): React.ReactNode {
     if (movies) {
@@ -64,8 +64,10 @@ export default function SearchAppBar() {
               select
               label="Catégorie"
               size="small"
+              onChange={(event) => handleChangeCategory(event)}
+              defaultValue="toutes"
             >
-              <MenuItem value={"aucune"}>Aucune</MenuItem>
+              <MenuItem value={"toutes"}>Toutes</MenuItem>
               {renderCategories()}
             </TextField>
           </div>

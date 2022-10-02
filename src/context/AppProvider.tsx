@@ -19,6 +19,7 @@ const AppProvider = ({ children }: any) => {
     message: "",
     severity: undefined,
   });
+  const [category, setCategory] = useState<string>("toutes");
 
   useEffect(() => {
     movies$.then((value) =>
@@ -81,6 +82,10 @@ const AppProvider = ({ children }: any) => {
     }
   }
 
+  function handleChangeCategory(event: any): void {
+    setCategory(event.target.value)
+  }
+
   return (
     <MoviesContext.Provider
       value={{
@@ -89,7 +94,9 @@ const AppProvider = ({ children }: any) => {
         handleFavoriteToggle,
         snackBar,
         handleLikeClick,
-        handleDislikeClick
+        handleDislikeClick,
+        handleChangeCategory,
+        category
       }}
     >
       {children}
