@@ -61,6 +61,7 @@ function App() {
                   handleMovieDelete={() => handleMovieDelete(movie.id)}
                   handleFavoriteToggle={() => handleFavoriteToggle(movie.id)}
                   favorite={movie.favorite}
+                  image={movie.image}
                 />
               </Grid>
             ))
