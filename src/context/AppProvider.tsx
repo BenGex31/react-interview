@@ -77,13 +77,14 @@ const AppProvider = ({ children }: any) => {
       const findedIndexMovie = _movies.findIndex(
         (movie) => movie.id === movieId
       );
-      _movies[findedIndexMovie].dislikes = _movies[findedIndexMovie].dislikes + 1;
+      _movies[findedIndexMovie].dislikes =
+        _movies[findedIndexMovie].dislikes + 1;
       setMovies(_movies);
     }
   }
 
   function handleChangeCategory(event: any): void {
-    setCategory(event.target.value)
+    setCategory(event.target.value);
   }
 
   return (
@@ -96,7 +97,7 @@ const AppProvider = ({ children }: any) => {
         handleLikeClick,
         handleDislikeClick,
         handleChangeCategory,
-        category
+        category,
       }}
     >
       {children}
