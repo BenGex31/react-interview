@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Stack, Snackbar } from "@mui/material";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
-import { snackBarObject } from "../App";
+import { snackBarObject } from "../types/Types";
 
 export default function SimpleSnackbar({
   handleClose,

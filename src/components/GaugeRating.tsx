@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import { movieObject } from "../App";
+import { movieObject } from "../types/Types";
 import { red, green } from "@mui/material/colors";
 
 const GaugeRating = ({ likes, dislikes }: movieObject) => {

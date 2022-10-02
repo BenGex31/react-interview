@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import { green, red } from "@mui/material/colors";
 import React from "react";
-import { movieObject } from "../App";
+import { movieObject } from "../types/Types";
 import GaugeRating from "./GaugeRating";
 
 const MovieCard = ({

@@ -4,24 +4,7 @@ import { Grid, Skeleton } from "@mui/material";
 import MovieCard from "./components/MovieCard";
 import SimpleSnackbar from "./components/SnabarBar";
 import { MoviesContext } from "./context/AppProvider";
-
-export type movieObject = {
-  id?: string;
-  title?: string;
-  category?: string;
-  favorite?: boolean;
-  likes: number;
-  dislikes: number;
-  handleMovieDelete?: () => void;
-  handleFavoriteToggle?: () => void;
-};
-
-export type snackBarObject = {
-  handleClose: (event: React.SyntheticEvent | Event) => void;
-  open: boolean;
-  message: string;
-  severity: "success" | "error" | "info" | "warning" | undefined;
-};
+import { movieObject } from "./types/Types";
 
 function App() {
   const { movies, handleMovieDelete, handleFavoriteToggle, snackBar }: any =
