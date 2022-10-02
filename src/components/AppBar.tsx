@@ -5,13 +5,17 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
-import { MenuItem, TextField } from "@mui/material";
+import { Menu, MenuItem, TextField } from "@mui/material";
 import { MoviesContext } from "../context/AppProvider";
 import { movieObject } from "../types/Types";
+import FavoriteMoviesDialog from "./FavoriteMoviesDialog";
 
 export default function SearchAppBar() {
-  const { movies, handleChangeCategory }: any =
-    React.useContext(MoviesContext);
+  const { movies, handleChangeCategory }: any = React.useContext(MoviesContext);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const [isOpenFavoriteMoviesDialog, setIsOpenFavoriteMoviesDialog] =
+    React.useState(false);
 
   function renderCategories(): React.ReactNode {
     if (movies) {
@@ -30,6 +34,19 @@ export default function SearchAppBar() {
     }
   }
 
+  const handleOpenMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleOpenFavoriteMoviesDialog = () => {
+    setIsOpenFavoriteMoviesDialog(true);
+    handleMenuClose();
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar sx={{ padding: 2 }} position="static">
@@ -40,9 +57,23 @@ export default function SearchAppBar() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={handleOpenMenuClick}
           >
             <MenuIcon />
           </IconButton>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleMenuClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem onClick={handleOpenFavoriteMoviesDialog}>
+              Films favoris
+            </MenuItem>
+          </Menu>
           <Typography
             variant="h6"
             noWrap
@@ -74,6 +105,12 @@ export default function SearchAppBar() {
           </div>
         </Toolbar>
       </AppBar>
+      {isOpenFavoriteMoviesDialog && (
+        <FavoriteMoviesDialog
+          open={isOpenFavoriteMoviesDialog}
+          onClose={() => setIsOpenFavoriteMoviesDialog(false)}
+        />
+      )}
     </Box>
   );
 }
