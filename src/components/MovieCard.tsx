@@ -38,7 +38,7 @@ const MovieCard = ({
     handleFavoriteToggle,
   }: any = React.useContext(MoviesContext);
   return (
-    <Card>
+    <Card raised={favorite}>
       <CardHeader
         title={
           <Typography fontWeight={"bold"} variant="h6">
