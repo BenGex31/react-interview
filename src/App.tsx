@@ -5,6 +5,7 @@ import MovieCard from "./components/MovieCard";
 import SimpleSnackbar from "./components/SnabarBar";
 import { MoviesContext } from "./context/AppProvider";
 import { movieObject } from "./types/Types";
+import SearchAppBar from './components/AppBar';
 
 function App() {
   const { movies, handleMovieDelete, handleFavoriteToggle, snackBar }: any =
@@ -49,7 +50,8 @@ function App() {
 
   return (
     <Container sx={{ marginTop: 3, marginBottom: 3 }} maxWidth={"xl"}>
-      <Grid container justifyContent={"space-between"} spacing={2}>
+     <SearchAppBar />
+      <Grid mt={3} container justifyContent={"space-between"} spacing={2}>
         {movies
           ? movies.map((movie: movieObject) => (
               <Grid key={movie.id} item xs={12} sm={6} lg={4}>
