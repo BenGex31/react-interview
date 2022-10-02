@@ -59,6 +59,21 @@ const AppProvider = ({ children }: any) => {
         (movie) => movie.id === movieId
       );
       _movies[findedIndexMovie].favorite = !_movies[findedIndexMovie].favorite;
+      if (_movies[findedIndexMovie].favorite) {
+        setSnackBar({
+          ...snackBar,
+          open: true,
+          message: `Film ${_movies[findedIndexMovie].title} ajouté à vos favoris !`,
+          severity: "success",
+        });
+      } else {
+        setSnackBar({
+          ...snackBar,
+          open: true,
+          message: `Film ${_movies[findedIndexMovie].title} supprimé de vos favoris !`,
+          severity: "success",
+        });
+      }
       setMovies(_movies);
     }
   }
