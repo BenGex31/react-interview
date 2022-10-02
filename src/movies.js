@@ -1,3 +1,14 @@
+import ocean8 from "./images/ocean8.jpeg";
+import midnightSun from "./images/midnightSun.jpeg";
+import indestructibles2 from "./images/lesIndestructibles2.jpeg";
+import sansUnBruit from "./images/sansUnBruit.jpeg";
+import creed2 from "./images/creed2.jpeg";
+import starWars from "./images/starWars.jpeg";
+import pulpFiction from "./images/pulpFiction.jpeg";
+import seven from "./images/seven.jpeg";
+import inception from "./images/inception.jpeg";
+import goneGirl from "./images/goneGirl.jpeg";
+
 const movies = [
   {
     id: "1",
@@ -5,6 +16,7 @@ const movies = [
     category: "Comedy",
     likes: 4,
     dislikes: 1,
+    image: ocean8,
   },
   {
     id: "2",
@@ -12,6 +24,7 @@ const movies = [
     category: "Comedy",
     likes: 2,
     dislikes: 0,
+    image: midnightSun,
   },
   {
     id: "3",
@@ -19,6 +32,7 @@ const movies = [
     category: "Animation",
     likes: 3,
     dislikes: 1,
+    image: indestructibles2,
   },
   {
     id: "4",
@@ -26,6 +40,7 @@ const movies = [
     category: "Thriller",
     likes: 6,
     dislikes: 6,
+    image: sansUnBruit,
   },
   {
     id: "5",
@@ -33,6 +48,7 @@ const movies = [
     category: "Drame",
     likes: 16,
     dislikes: 2,
+    image: creed2,
   },
   {
     id: "6",
@@ -40,6 +56,7 @@ const movies = [
     category: "Thriller",
     likes: 11,
     dislikes: 3,
+    image: starWars,
   },
   {
     id: "7",
@@ -47,6 +64,7 @@ const movies = [
     category: "Thriller",
     likes: 12333,
     dislikes: 32,
+    image: pulpFiction,
   },
   {
     id: "8",
@@ -54,6 +72,7 @@ const movies = [
     category: "Thriller",
     likes: 2,
     dislikes: 1,
+    image: seven,
   },
   {
     id: "9",
@@ -61,6 +80,7 @@ const movies = [
     category: "Thriller",
     likes: 2,
     dislikes: 1,
+    image: inception,
   },
   {
     id: "10",
@@ -68,9 +88,10 @@ const movies = [
     category: "Thriller",
     likes: 22,
     dislikes: 12,
+    image: goneGirl,
   },
 ];
 
 export const movies$ = new Promise((resolve, reject) =>
-  setTimeout(resolve, 4000, movies)
+  setTimeout(resolve, 2000, movies)
 );

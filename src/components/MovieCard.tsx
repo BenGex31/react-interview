@@ -14,6 +14,7 @@ import {
   Tooltip,
   Typography,
   IconButton,
+  CardMedia,
 } from "@mui/material";
 import { green, red } from "@mui/material/colors";
 import React from "react";
@@ -25,6 +26,7 @@ const MovieCard = ({
   category,
   likes,
   dislikes,
+  image,
   handleMovieDelete,
   handleFavoriteToggle,
   favorite,
@@ -59,6 +61,13 @@ const MovieCard = ({
             <GaugeRating likes={likes} dislikes={dislikes} />
           </Stack>
         }
+      />
+      <CardMedia
+        component="img"
+        height={600}
+        sx={{ width: "100%" }}
+        src={image}
+        alt={title}
       />
       <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
         <IconButton
