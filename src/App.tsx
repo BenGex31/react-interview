@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Container } from "@mui/system";
-import { Grid, Skeleton } from "@mui/material";
+import { Grid, Pagination, Skeleton, Stack } from "@mui/material";
 import MovieCard from "./components/MovieCard";
 import SimpleSnackbar from "./components/SnabarBar";
 import { MoviesContext } from "./context/AppProvider";
@@ -10,10 +10,14 @@ import SearchAppBar from "./components/AppBar";
 function App() {
   const {
     movies,
+    data,
     handleMovieDelete,
     handleFavoriteToggle,
     snackBar,
     category,
+    page,
+    perPage,
+    handlePageChange,
   }: any = useContext(MoviesContext);
 
   function displayLoadingSkeletons(): React.ReactNode {
@@ -53,12 +57,28 @@ function App() {
     );
   }
 
+  function renderPagination() {
+    return (
+      <Stack justifyContent={"center"} direction="row" mt={5} mb={2}>
+        <Pagination
+          color="secondary"
+          size="large"
+          count={Math.ceil(movies?.length / perPage)}
+          page={page}
+          onChange={(event, p) => handlePageChange(event, p)}
+        />
+      </Stack>
+    );
+  }
+
   return (
     <Container sx={{ marginTop: 3, marginBottom: 3 }} maxWidth={"xl"}>
       <SearchAppBar />
-      <Grid mt={3} container justifyContent={"space-between"} spacing={2}>
+      {renderPagination()}
+      <Grid container justifyContent={"space-between"} spacing={2}>
         {movies
-          ? movies
+          ? data
+              .currentData()
               .filter((movie: movieObject) =>
                 category !== "toutes"
                   ? category === movie.category
@@ -87,6 +107,7 @@ function App() {
         message={snackBar.message}
         severity={snackBar.severity}
       />
+      {renderPagination()}
     </Container>
   );
 }

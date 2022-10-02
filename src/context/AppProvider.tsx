@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { movieObject, snackBarObject } from "../types/Types";
 import { movies$ } from "../movies";
+import usePagination from "../hooks/usePagination";
 
 // @ts-ignore
 export const MoviesContext = React.createContext();
@@ -20,6 +21,8 @@ const AppProvider = ({ children }: any) => {
     severity: undefined,
   });
   const [category, setCategory] = useState<string>("toutes");
+  const [page, setPage] = useState(1);
+  const perPage = 3;
 
   useEffect(() => {
     movies$.then((value) =>
@@ -87,6 +90,13 @@ const AppProvider = ({ children }: any) => {
     setCategory(event.target.value);
   }
 
+  const data = usePagination(movies, perPage);
+
+  function handlePageChange(event: any, _page: number): void {
+    setPage(_page);
+    data.jump(_page);
+  }
+
   return (
     <MoviesContext.Provider
       value={{
@@ -98,6 +108,10 @@ const AppProvider = ({ children }: any) => {
         handleDislikeClick,
         handleChangeCategory,
         category,
+        page,
+        perPage,
+        handlePageChange,
+        data
       }}
     >
       {children}
