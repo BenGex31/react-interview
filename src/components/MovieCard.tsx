@@ -18,10 +18,12 @@ import {
 } from "@mui/material";
 import { green, red } from "@mui/material/colors";
 import React from "react";
+import { MoviesContext } from "../context/AppProvider";
 import { movieObject } from "../types/Types";
 import GaugeRating from "./GaugeRating";
 
 const MovieCard = ({
+  id,
   title,
   category,
   likes,
@@ -31,6 +33,8 @@ const MovieCard = ({
   handleFavoriteToggle,
   favorite,
 }: movieObject) => {
+  const { handleLikeClick }: any =
+    React.useContext(MoviesContext);
   return (
     <Card>
       <CardHeader
@@ -45,7 +49,7 @@ const MovieCard = ({
             <Stack direction={"row"} spacing={3}>
               <Stack direction={"row"} spacing={1}>
                 <Tooltip title={likes.toString()}>
-                  <IconButton>
+                  <IconButton onClick={() => handleLikeClick(id)}>
                     <ThumbUpAlt sx={{ color: green[500] }} />
                   </IconButton>
                 </Tooltip>

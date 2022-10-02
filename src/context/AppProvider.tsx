@@ -59,9 +59,26 @@ const AppProvider = ({ children }: any) => {
     }
   }
 
+  function handleLikeClick(movieId: string | undefined): void {
+    if (movies) {
+      const _movies = [...movies];
+      const findedIndexMovie = _movies.findIndex(
+        (movie) => movie.id === movieId
+      );
+      _movies[findedIndexMovie].likes = _movies[findedIndexMovie].likes + 1;
+      setMovies(_movies);
+    }
+  }
+
   return (
     <MoviesContext.Provider
-      value={{ movies, handleMovieDelete, handleFavoriteToggle, snackBar }}
+      value={{
+        movies,
+        handleMovieDelete,
+        handleFavoriteToggle,
+        snackBar,
+        handleLikeClick,
+      }}
     >
       {children}
     </MoviesContext.Provider>
