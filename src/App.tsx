@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Container } from "@mui/system";
 import {
   Grid,
+  Grow,
   MenuItem,
   Pagination,
   Skeleton,
@@ -28,37 +29,21 @@ function App() {
   }: any = useContext(MoviesContext);
 
   function displayLoadingSkeletons(): React.ReactNode {
+    const width = 485;
+    const height = 879;
     return (
-      <Grid container justifyContent={"space-between"} spacing={2}>
+      <Grid container mt={3} justifyContent={"center"} spacing={2}>
         <Grid item xs={12} sm={6} lg={4}>
-          <Skeleton variant="rectangular" width={400} height={100} />
+          <Skeleton variant="rectangular" width={width} height={height} />
         </Grid>
         <Grid item xs={12} sm={6} lg={4}>
-          <Skeleton variant="rectangular" width={400} height={100} />
+          <Skeleton variant="rectangular" width={width} height={height} />
         </Grid>
         <Grid item xs={12} sm={6} lg={4}>
-          <Skeleton variant="rectangular" width={400} height={100} />
+          <Skeleton variant="rectangular" width={width} height={height} />
         </Grid>
         <Grid item xs={12} sm={6} lg={4}>
-          <Skeleton variant="rectangular" width={400} height={100} />
-        </Grid>
-        <Grid item xs={12} sm={6} lg={4}>
-          <Skeleton variant="rectangular" width={400} height={100} />
-        </Grid>
-        <Grid item xs={12} sm={6} lg={4}>
-          <Skeleton variant="rectangular" width={400} height={100} />
-        </Grid>
-        <Grid item xs={12} sm={6} lg={4}>
-          <Skeleton variant="rectangular" width={400} height={100} />
-        </Grid>
-        <Grid item xs={12} sm={6} lg={4}>
-          <Skeleton variant="rectangular" width={400} height={100} />
-        </Grid>
-        <Grid item xs={12} sm={6} lg={4}>
-          <Skeleton variant="rectangular" width={400} height={100} />
-        </Grid>
-        <Grid item xs={12} sm={6} lg={4}>
-          <Skeleton variant="rectangular" width={400} height={100} />
+          <Skeleton variant="rectangular" width={width} height={height} />
         </Grid>
       </Grid>
     );
@@ -104,18 +89,20 @@ function App() {
                   ? category === movie.category
                   : category !== movie.category
               )
-              .map((movie: movieObject) => (
-                <Grid key={movie.id} item xs={12} sm={6} lg={4}>
-                  <MovieCard
-                    id={movie.id}
-                    title={movie.title}
-                    category={movie.category}
-                    likes={movie.likes}
-                    dislikes={movie.dislikes}
-                    favorite={movie.favorite}
-                    image={movie.image}
-                  />
-                </Grid>
+              .map((movie: movieObject, index: number) => (
+                <Grow timeout={index * 1000} in={true} key={movie.id}>
+                  <Grid item xs={12} sm={6} lg={4}>
+                    <MovieCard
+                      id={movie.id}
+                      title={movie.title}
+                      category={movie.category}
+                      likes={movie.likes}
+                      dislikes={movie.dislikes}
+                      favorite={movie.favorite}
+                      image={movie.image}
+                    />
+                  </Grid>
+                </Grow>
               ))
           : displayLoadingSkeletons()}
       </Grid>
