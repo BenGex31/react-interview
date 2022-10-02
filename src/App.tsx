@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { movies$ } from "./movies";
+import React, { useContext } from "react";
 import { Container } from "@mui/system";
 import { Grid, Skeleton } from "@mui/material";
 import MovieCard from "./components/MovieCard";
 import SimpleSnackbar from "./components/SnabarBar";
+import { MoviesContext } from "./context/AppProvider";
 
 export type movieObject = {
   id?: string;
@@ -24,30 +24,8 @@ export type snackBarObject = {
 };
 
 function App() {
-  const [movies, setMovies] = useState<movieObject[] | null>(null);
-  const [snackBar, setSnackBar] = useState<snackBarObject>({
-    handleClose: (event: React.SyntheticEvent | Event, reason?: string) => {
-      if (reason === "clickaway") {
-        return;
-      }
-
-      setSnackBar({ ...snackBar, open: false });
-    },
-    open: false,
-    message: "",
-    severity: undefined,
-  });
-
-  useEffect(() => {
-    movies$.then((value) =>
-      setMovies(
-        value.map((item: movieObject) => ({
-          ...item,
-          favorite: false,
-        }))
-      )
-    );
-  }, []);
+  const { movies, handleMovieDelete, handleFavoriteToggle, snackBar }: any =
+    useContext(MoviesContext);
 
   function displayLoadingSkeletons(): React.ReactNode {
     return (
@@ -86,39 +64,11 @@ function App() {
     );
   }
 
-  function handleMovieDelete(movieId: string | undefined): void {
-    if (movies) {
-      const _movies = [...movies];
-      const findedIndexMovie = _movies.findIndex(
-        (movie) => movie.id === movieId
-      );
-      setSnackBar({
-        ...snackBar,
-        open: true,
-        message: `Film ${_movies[findedIndexMovie].title} supprimé !`,
-        severity: "success",
-      });
-      _movies.splice(findedIndexMovie, 1);
-      setMovies(_movies);
-    }
-  }
-
-  function handleFavoriteToggle(movieId: string | undefined): void {
-    if (movies) {
-      const _movies = [...movies];
-      const findedIndexMovie = _movies.findIndex(
-        (movie) => movie.id === movieId
-      );
-      _movies[findedIndexMovie].favorite = !_movies[findedIndexMovie].favorite;
-      setMovies(_movies);
-    }
-  }
-
   return (
     <Container maxWidth={"xl"}>
       <Grid container justifyContent={"space-between"} spacing={2}>
         {movies
-          ? movies.map((movie) => (
+          ? movies.map((movie: movieObject) => (
               <Grid key={movie.id} item xs={12} sm={6} lg={4}>
                 <MovieCard
                   title={movie.title}
