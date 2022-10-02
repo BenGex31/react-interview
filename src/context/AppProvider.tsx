@@ -70,6 +70,17 @@ const AppProvider = ({ children }: any) => {
     }
   }
 
+  function handleDislikeClick(movieId: string | undefined): void {
+    if (movies) {
+      const _movies = [...movies];
+      const findedIndexMovie = _movies.findIndex(
+        (movie) => movie.id === movieId
+      );
+      _movies[findedIndexMovie].dislikes = _movies[findedIndexMovie].dislikes + 1;
+      setMovies(_movies);
+    }
+  }
+
   return (
     <MoviesContext.Provider
       value={{
@@ -78,6 +89,7 @@ const AppProvider = ({ children }: any) => {
         handleFavoriteToggle,
         snackBar,
         handleLikeClick,
+        handleDislikeClick
       }}
     >
       {children}

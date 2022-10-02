@@ -33,7 +33,7 @@ const MovieCard = ({
   handleFavoriteToggle,
   favorite,
 }: movieObject) => {
-  const { handleLikeClick }: any =
+  const { handleLikeClick, handleDislikeClick }: any =
     React.useContext(MoviesContext);
   return (
     <Card>
@@ -56,7 +56,7 @@ const MovieCard = ({
               </Stack>
               <Stack direction={"row"} spacing={1}>
                 <Tooltip title={dislikes.toString()}>
-                  <IconButton>
+                  <IconButton onClick={() => handleDislikeClick(id)}>
                     <ThumbDownAlt sx={{ color: red[500] }} />
                   </IconButton>
                 </Tooltip>
