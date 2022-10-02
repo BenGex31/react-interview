@@ -10,7 +10,7 @@ import { MoviesContext } from "../context/AppProvider";
 import { movieObject } from "../types/Types";
 
 export default function SearchAppBar() {
-  const { movies, handleChangeCategory, category }: any =
+  const { movies, handleChangeCategory }: any =
     React.useContext(MoviesContext);
 
   function renderCategories(): React.ReactNode {
@@ -50,27 +50,6 @@ export default function SearchAppBar() {
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             BestMovies4U
-          </Typography>
-          <Typography mr={5}>
-            {movies?.filter((movie: movieObject) =>
-              category !== "toutes"
-                ? category === movie.category
-                : category !== movie.category
-            ).length <= 1
-              ? `${
-                  movies?.filter((movie: movieObject) =>
-                    category !== "toutes"
-                      ? category === movie.category
-                      : category !== movie.category
-                  ).length
-                } film`
-              : `${
-                  movies?.filter((movie: movieObject) =>
-                    category !== "toutes"
-                      ? category === movie.category
-                      : category !== movie.category
-                  ).length
-                } films`}
           </Typography>
           <div
             style={{
