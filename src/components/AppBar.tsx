@@ -48,7 +48,7 @@ export default function SearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar sx={{ padding: 15 }} position="static">
+      <AppBar sx={{ padding: 2 }} position="static">
         <Toolbar>
           <IconButton
             size="large"
@@ -67,24 +67,24 @@ export default function SearchAppBar() {
           >
             BestMovies4U
           </Typography>
-          <Search>
+          <div
+            style={{
+              backgroundColor: "white",
+              padding: 7,
+              borderRadius: 5
+            }}
+          >
             <TextField
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
               sx={{
-                width: 300,
+                width: 150,
               }}
               select
               label="Catégorie"
             >
+              <MenuItem value={"aucune"}>Aucune</MenuItem>
               {renderCategories()}
             </TextField>
-          </Search>
+          </div>
         </Toolbar>
       </AppBar>
     </Box>
