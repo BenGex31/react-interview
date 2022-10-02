@@ -19,8 +19,6 @@ function App() {
   const {
     movies,
     data,
-    handleMovieDelete,
-    handleFavoriteToggle,
     snackBar,
     category,
     page,
