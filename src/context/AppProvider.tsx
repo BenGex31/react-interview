@@ -22,7 +22,7 @@ const AppProvider = ({ children }: any) => {
   });
   const [category, setCategory] = useState<string>("toutes");
   const [page, setPage] = useState(1);
-  const perPage = 3;
+  const [perPage, setPerPage] = useState(3);
 
   useEffect(() => {
     movies$.then((value) =>
@@ -97,6 +97,10 @@ const AppProvider = ({ children }: any) => {
     data.jump(_page);
   }
 
+  function handlePerPageChange(event: any): void {
+    setPerPage(event.target.value);
+  }
+
   return (
     <MoviesContext.Provider
       value={{
@@ -111,7 +115,8 @@ const AppProvider = ({ children }: any) => {
         page,
         perPage,
         handlePageChange,
-        data
+        handlePerPageChange,
+        data,
       }}
     >
       {children}
