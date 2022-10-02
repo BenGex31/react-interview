@@ -12,7 +12,9 @@ const GaugeRating = ({ likes, dislikes }: movieObject) => {
       width={100}
       sx={{ backgroundColor: likes === dislikes ? "transparent" : red[500] }}
     >
-      <Typography variant={"body2"} gutterBottom>Spectateurs</Typography>
+      <Typography variant={"body2"} gutterBottom>
+        Spectateurs
+      </Typography>
       <Grid
         height={"100%"}
         sx={{
