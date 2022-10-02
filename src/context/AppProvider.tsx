@@ -22,7 +22,7 @@ const AppProvider = ({ children }: any) => {
   });
   const [category, setCategory] = useState<string>("toutes");
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(3);
+  const [perPage, setPerPage] = useState(4);
 
   useEffect(() => {
     movies$.then((value) =>
