@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { movieObject } from "../types/Types";
 import { red, green } from "@mui/material/colors";
 
@@ -7,10 +7,12 @@ const GaugeRating = ({ likes, dislikes }: movieObject) => {
   return (
     <Grid
       container
+      direction={"column-reverse"}
       height={3}
       width={100}
       sx={{ backgroundColor: likes === dislikes ? "transparent" : red[500] }}
     >
+      <Typography variant={"body2"} gutterBottom>Spectateurs</Typography>
       <Grid
         height={"100%"}
         sx={{
