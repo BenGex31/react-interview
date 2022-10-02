@@ -64,7 +64,7 @@ const MovieCard = ({
       />
       <CardMedia
         component="img"
-        height={600}
+        height={700}
         sx={{ width: "100%" }}
         src={image}
         alt={title}
