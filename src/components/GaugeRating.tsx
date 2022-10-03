@@ -10,17 +10,21 @@ const GaugeRating = ({ likes, dislikes }: movieObject) => {
       direction={"column-reverse"}
       height={3}
       width={100}
-      sx={{ backgroundColor: likes === dislikes ? "transparent" : red[500] }}
+      sx={{ backgroundColor: "transparent" }}
     >
-      <Typography variant={"body2"} gutterBottom>
-        Spectateurs
-      </Typography>
       <Grid
         height={"100%"}
         sx={{
           backgroundColor: likes === dislikes ? "transparent" : green[500],
         }}
         width={`${likes / (likes + dislikes)}`}
+      />
+      <Grid
+        height={"100%"}
+        sx={{
+          backgroundColor: likes === dislikes ? "transparent" : red[500],
+        }}
+        width={`${dislikes / (likes + dislikes)}`}
       />
     </Grid>
   );
