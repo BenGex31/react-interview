@@ -2,6 +2,7 @@ import {
   Delete,
   Favorite,
   FavoriteBorder,
+  InfoOutlined,
   ThumbDownAlt,
   ThumbUpAlt,
 } from "@mui/icons-material";
@@ -30,6 +31,7 @@ const MovieCard = ({
   dislikes,
   image,
   favorite,
+  hasVoted,
 }: movieObject) => {
   const {
     handleLikeClick,
@@ -41,24 +43,51 @@ const MovieCard = ({
     <Card raised={favorite}>
       <CardHeader
         title={
-          <Typography fontWeight={"bold"} variant="h6">
-            {title}
-          </Typography>
+          <Stack direction={"row"} alignItems={"center"} spacing={2}>
+            <Typography fontWeight={"bold"} variant="h6">
+              {title}
+            </Typography>
+            <Tooltip
+              title={
+                <Stack>
+                  <Typography>{`${
+                    likes > 1
+                      ? likes + " spectateurs ont aimé"
+                      : likes + " spectateur a aimé"
+                  }`}</Typography>
+                  <Typography>{`${
+                    dislikes > 1
+                      ? dislikes + " spectateurs n'ont pas aimé"
+                      : dislikes + " spectateur n'a pas aimé"
+                  }`}</Typography>
+                </Stack>
+              }
+            >
+              <InfoOutlined color="primary" />
+            </Tooltip>
+          </Stack>
         }
         subheader={category}
         action={
-          <Stack direction={"column"} spacing={5} alignItems={"center"}>
+          <Stack direction={"column"} spacing={1} alignItems={"center"}>
+            <Typography variant="body2">Popularité</Typography>
             <Stack direction={"row"} spacing={3}>
               <Stack direction={"row"} spacing={1}>
                 <Tooltip title={likes.toString()}>
-                  <IconButton onClick={() => handleLikeClick(id)}>
+                  <IconButton
+                    disabled={hasVoted}
+                    onClick={() => handleLikeClick(id)}
+                  >
                     <ThumbUpAlt sx={{ color: green[500] }} />
                   </IconButton>
                 </Tooltip>
               </Stack>
               <Stack direction={"row"} spacing={1}>
                 <Tooltip title={dislikes.toString()}>
-                  <IconButton onClick={() => handleDislikeClick(id)}>
+                  <IconButton
+                    disabled={hasVoted}
+                    onClick={() => handleDislikeClick(id)}
+                  >
                     <ThumbDownAlt sx={{ color: red[500] }} />
                   </IconButton>
                 </Tooltip>
