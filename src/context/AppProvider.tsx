@@ -30,6 +30,7 @@ const AppProvider = ({ children }: any) => {
         value.map((item: movieObject) => ({
           ...item,
           favorite: false,
+          hasVoted: false,
         }))
       )
     );
@@ -85,7 +86,14 @@ const AppProvider = ({ children }: any) => {
         (movie) => movie.id === movieId
       );
       _movies[findedIndexMovie].likes = _movies[findedIndexMovie].likes + 1;
+      _movies[findedIndexMovie].hasVoted = true
       setMovies(_movies);
+      setSnackBar({
+        ...snackBar,
+        open: true,
+        message: `Vous aimez le film ${_movies[findedIndexMovie].title}`,
+        severity: "info",
+      });
     }
   }
 
@@ -97,7 +105,14 @@ const AppProvider = ({ children }: any) => {
       );
       _movies[findedIndexMovie].dislikes =
         _movies[findedIndexMovie].dislikes + 1;
+        _movies[findedIndexMovie].hasVoted = true
       setMovies(_movies);
+      setSnackBar({
+        ...snackBar,
+        open: true,
+        message: `Vous n'aimez pas le film ${_movies[findedIndexMovie].title}`,
+        severity: "info",
+      });
     }
   }
 
