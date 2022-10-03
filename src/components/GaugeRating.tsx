@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { movieObject } from "../types/Types";
 import { red, green } from "@mui/material/colors";
 
