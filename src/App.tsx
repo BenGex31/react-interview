@@ -100,6 +100,7 @@ function App() {
                       dislikes={movie.dislikes}
                       favorite={movie.favorite}
                       image={movie.image}
+                      hasVoted={movie.hasVoted}
                     />
                   </Grid>
                 </Grow>
