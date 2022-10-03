@@ -8,7 +8,7 @@ const GaugeRating = ({ likes, dislikes }: movieObject) => {
     <Grid
       container
       direction={"column-reverse"}
-      height={3}
+      height={4}
       width={100}
       sx={{ backgroundColor: "transparent" }}
     >
