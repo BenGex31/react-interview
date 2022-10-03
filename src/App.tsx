@@ -60,6 +60,7 @@ function App() {
           color="secondary"
           variant="filled"
           onChange={(event) => handlePerPageChange(event)}
+          defaultValue={4}
         >
           <MenuItem value={4}>4</MenuItem>
           <MenuItem value={8}>8</MenuItem>
