@@ -6,8 +6,7 @@ export type movieObject = {
     image?: string;
     likes: number;
     dislikes: number;
-    handleMovieDelete?: () => void;
-    handleFavoriteToggle?: () => void;
+    hasVoted?: boolean;
   };
 
 export type snackBarObject = {
